@@ -4,21 +4,17 @@ pragma solidity >=0.4.22 <0.9.0;
 contract Storage {
     // Order of storage var are important for memory slots
 
-    // hash togheter: kecckat256(key + slot);
-    // web3.eth.getStorageAt(contract_address, keccak256(key + slot)
     mapping(uint => uint) public aa; // slot 0
     mapping(address => uint) public bb; //slot 1
 
+    // hash togheter: kecckat256(slot + index);
     // web3.eth.getStorageAt(contract_address, keccak256(slot) + index (decimal) of the item)
-    // slot = 0000000000000000000000000000000000000000000000000000000000000002  <- 2 = slot
-    // index 1 = 29102676481673041902632991033461445430619272659676223336789171408008386403022
-    // index 2 = 29102676481673041902632991033461445430619272659676223336789171408008386403022 + 1 = 3 
-    // index 2 = 29102676481673041902632991033461445430619272659676223336789171408008386403023 <- 3 = slot
-    // index 2 (DEC -> HEX) = 0x405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACF
-    // is the same number plus 1
-    
-    // converting the slot to decimal + 1 and covert back to hex
-    // web3.eth.getStorageAt(contract_address, "0x405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACF")
+    // slot = 0x0000000000000000000000000000000000000000000000000000000000000002
+    // hash to keccak256 = 405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace
+    // hash decimal = 2910267648167304190263299103346144543061927265967622333678917140800838640302(2 <- increase this number to change de index) 
+    // return to hex = 405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACE
+
+    // web3.eth.getStorageAt(contract_address, "0x405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACE")
  
     
     uint[] public cc; // slot 2
