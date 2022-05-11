@@ -17,6 +17,8 @@ function App() {
 
   const shouldReload = useCallback(() => setReload(!reload), [reload]);
 
+  const contractIsAvailable = web3Api.contract;
+
   const getAccounts = useCallback(async () => {
     const { web3 } = web3Api;
     const accounts = await web3.eth.requestAccounts();
@@ -52,6 +54,11 @@ function App() {
       setAccount(account);
     });
 
+    provider.on("chainChanged", () => {
+      setAccount("");
+      shouldReload();
+    });
+
     // provider._jsonRpcConnection.events.on("notification", (payload) => {
     //   const { method } = payload;
 
@@ -85,6 +92,10 @@ function App() {
 
       const contract = await loadContract("Faucet", provider);
 
+      if (!contract) {
+        return console.error("Please, check your network");
+      }
+
       setAccountListener(provider);
 
       setWeb3Api({
@@ -95,7 +106,8 @@ function App() {
     };
 
     loadProvider();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reload]);
 
   useEffect(() => {
     const loadBalance = async () => {
@@ -117,7 +129,7 @@ function App() {
             <button
               className="button is-primary mr-2"
               onClick={getAccounts}
-              disabled={!web3Api.provider}
+              disabled={!web3Api.provider && !contractIsAvailable}
             >
               Connect
             </button>
@@ -138,14 +150,16 @@ function App() {
                 <button
                   className="button is-link is-light mr-2"
                   onClick={addFunds}
+                  disabled={!contractIsAvailable}
                 >
-                  Donate 1ETH
+                  Donate 1 eth
                 </button>
                 <button
                   className="button is-primary is-light"
+                  disabled={!contractIsAvailable}
                   onClick={withdraw}
                 >
-                  withdraw
+                  withdraw 0.1 eth
                 </button>
               </div>
             </>
