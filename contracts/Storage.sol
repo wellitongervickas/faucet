@@ -7,14 +7,9 @@ contract Storage {
     mapping(uint => uint) public aa; // slot 0
     mapping(address => uint) public bb; //slot 1
 
-    // hash togheter: kecckat256(slot + index);
+    // hash togheter: kecckat256(slot) + index;
     // web3.eth.getStorageAt(contract_address, keccak256(slot) + index (decimal) of the item)
-    // slot = 0x0000000000000000000000000000000000000000000000000000000000000002
-    // hash to keccak256 = 405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace
-    // hash decimal = 2910267648167304190263299103346144543061927265967622333678917140800838640302(2 <- increase this number to change de index) 
-    // return to hex = 405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACE
-
-    // web3.eth.getStorageAt(contract_address, "0x405787FA12A823E0F2B7631CC41B3BA8828B3321CA811111FA75CD3AA3BB5ACE")
+    // slot = 0x0000000000000000000000000000000000000000000000000000000000000002 => to HEX + (index)
  
     
     uint[] public cc; // slot 2

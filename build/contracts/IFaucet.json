@@ -31,7 +31,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\n// they cannot inherit from other contracts\n// they can only inherit from other interfaces\n// they cannot declare a constructor\n// they cannot declare a state variables\n// all declared functions have to be external\n\ninterface IFaucet {\n  function addFunds() external payable;\n\n  function withdraw(uint withdrawAmount) external;\n}",
-  "sourcePath": "/home/welliton/welliton/blockchain/faucet/contracts/IFaucet.sol",
+  "sourcePath": "/home/welliton/welliton/blockchain/faucet2/faucet/contracts/IFaucet.sol",
   "ast": {
     "absolutePath": "project:/contracts/IFaucet.sol",
     "exportedSymbols": {
@@ -298,7 +298,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.6",
-  "updatedAt": "2022-05-04T23:22:03.309Z",
+  "updatedAt": "2022-05-09T14:50:00.628Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
